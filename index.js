@@ -134,6 +134,10 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.get("/api/test-email", async (req, res) => {
   try {
     const testEmail = "test@example.com";
