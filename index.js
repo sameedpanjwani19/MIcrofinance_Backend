@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect("mongodb+srv://abdulsameed:sameed%40123@cluster0.vgwcg.mongodb.net/todoApp?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true });
 
 const db = mongoose.connection;
 db.once("open", () => console.log("MongoDB connected"));
@@ -147,7 +147,7 @@ app.post("/api/login", async (req, res) => {
     }
 
     // Create and send JWT token
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    const token = jwt.sign({ id: user._id },"secret", { expiresIn: "1h" });
     res.status(200).json({ message: "Login successful", token });
   } catch (error) {
     console.error(error);
